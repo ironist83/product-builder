@@ -85,4 +85,53 @@ class LottoGenerator extends HTMLElement {
   }
 }
 
+
 customElements.define('lotto-generator', LottoGenerator);
+
+class ThemeToggle extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+
+    const button = document.createElement('button');
+    button.textContent = 'Toggle Theme';
+
+    const style = document.createElement('style');
+    style.textContent = `
+      button {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        box-shadow: 0 5px 10px -2px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.4);
+      }
+      button:hover {
+        background-color: oklch(from var(--accent-color) calc(l - 0.05) c h);
+      }
+    `;
+
+    const toggleTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    button.addEventListener('click', toggleTheme);
+
+    shadow.appendChild(style);
+    shadow.appendChild(button);
+  }
+}
+
+customElements.define('theme-toggle', ThemeToggle);
+

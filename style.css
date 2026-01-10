@@ -3,11 +3,33 @@
 @layer base {
   :root {
     --brand-hue: 280;
+  }
+
+  :root,
+  [data-theme="light"] {
     --main-bg: oklch(98% 0.02 var(--brand-hue));
     --text-color: oklch(20% 0.1 var(--brand-hue));
     --accent-color: oklch(65% 0.25 var(--brand-hue));
     --surface-color: oklch(95% 0.05 var(--brand-hue));
+  }
 
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --main-bg: oklch(20% 0.02 var(--brand-hue));
+      --text-color: oklch(98% 0.1 var(--brand-hue));
+      --accent-color: oklch(75% 0.25 var(--brand-hue));
+      --surface-color: oklch(30% 0.05 var(--brand-hue));
+    }
+  }
+
+  [data-theme="dark"] {
+    --main-bg: oklch(20% 0.02 var(--brand-hue));
+    --text-color: oklch(98% 0.1 var(--brand-hue));
+    --accent-color: oklch(75% 0.25 var(--brand-hue));
+    --surface-color: oklch(30% 0.05 var(--brand-hue));
+  }
+
+  :root {
     font-family: system-ui, sans-serif;
   }
 
