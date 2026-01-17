@@ -45,12 +45,70 @@
 }
 
 @layer components {
-  dinner-recommender {
+  dinner-recommender,
+  #affiliate-inquiry {
     display: block;
     background-color: var(--surface-color);
     padding: 2rem 3rem;
     border-radius: 1rem;
     box-shadow: 0 10px 20px -5px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.3),
                 0 20px 40px -10px oklch(from var(--accent-color) calc(l - 0.2) c h / 0.4);
+    margin-bottom: 2rem; /* Add some space below the form */
+  }
+
+  #affiliate-inquiry h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+  }
+
+  #affiliate-inquiry form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  #affiliate-inquiry label {
+    font-weight: bold;
+    color: var(--text-color);
+  }
+
+  #affiliate-inquiry input[type="text"],
+  #affiliate-inquiry input[type="email"],
+  #affiliate-inquiry textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid oklch(from var(--text-color) l c h / 0.3);
+    border-radius: 0.5rem;
+    background-color: oklch(from var(--main-bg) calc(l + 0.05) c h);
+    color: var(--text-color);
+    box-sizing: border-box; /* Ensures padding doesn't increase width */
+  }
+
+  #affiliate-inquiry input:focus,
+  #affiliate-inquiry textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px oklch(from var(--accent-color) l c h / 0.3);
+  }
+
+  #affiliate-inquiry button[type="submit"] {
+    background-color: var(--accent-color);
+    color: var(--main-bg); /* Use main-bg for text color on accent background */
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  }
+
+  #affiliate-inquiry button[type="submit"]:hover {
+    background-color: oklch(from var(--accent-color) calc(l - 0.1) c h);
+    transform: translateY(-2px);
+  }
+
+  #affiliate-inquiry button[type="submit"]:active {
+    transform: translateY(0);
   }
 }
