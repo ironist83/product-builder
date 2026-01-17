@@ -45,7 +45,7 @@
 }
 
 @layer components {
-  lotto-generator {
+  dinner-recommender {
     display: block;
     background-color: var(--surface-color);
     padding: 2rem 3rem;

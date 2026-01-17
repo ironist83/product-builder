@@ -1,4 +1,4 @@
-class LottoGenerator extends HTMLElement {
+class DinnerRecommender extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: 'open' });
@@ -7,13 +7,13 @@ class LottoGenerator extends HTMLElement {
     wrapper.setAttribute('class', 'wrapper');
 
     const title = document.createElement('h1');
-    title.textContent = 'Lotto Number Generator';
+    title.textContent = 'Dinner Menu Recommendation';
 
-    const numbersContainer = document.createElement('div');
-    numbersContainer.setAttribute('class', 'numbers');
+    const menuContainer = document.createElement('div');
+    menuContainer.setAttribute('class', 'menu');
 
     const button = document.createElement('button');
-    button.textContent = 'Generate Numbers';
+    button.textContent = 'Recommend Dinner';
 
     const style = document.createElement('style');
     style.textContent = `
@@ -25,18 +25,17 @@ class LottoGenerator extends HTMLElement {
         color: var(--accent-color);
         margin-bottom: 2rem;
       }
-      .numbers {
+      .menu {
         display: flex;
         gap: 1rem;
         margin-bottom: 2rem;
         justify-content: center;
       }
-      .number {
+      .menu-item {
         display: grid;
         place-content: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
+        padding: 1rem;
+        border-radius: 0.5rem;
         background-color: var(--accent-color);
         color: white;
         font-size: 1.5rem;
@@ -59,34 +58,34 @@ class LottoGenerator extends HTMLElement {
       }
     `;
 
-    const generateNumbers = () => {
-      const numbers = new Set();
-      while (numbers.size < 6) {
-        numbers.add(Math.floor(Math.random() * 45) + 1);
-      }
-      numbersContainer.innerHTML = '';
-      [...numbers].sort((a,b) => a-b).forEach(number => {
-        const numberEl = document.createElement('div');
-        numberEl.setAttribute('class', 'number');
-        numberEl.textContent = number;
-        numbersContainer.appendChild(numberEl);
-      });
+    const dinnerMenus = [
+      "Bibimbap", "Kimchi Jjigae", "Bulgogi", "Samgyeopsal", "Japchae",
+      "Haemul Pajeon", "Sundubu Jjigae", "Tteokbokki", "Galbi", "Doenjang Jjigae"
+    ];
+
+    const recommendDinner = () => {
+      const randomIndex = Math.floor(Math.random() * dinnerMenus.length);
+      const recommendedMenu = dinnerMenus[randomIndex];
+      menuContainer.innerHTML = '';
+      const menuEl = document.createElement('div');
+      menuEl.setAttribute('class', 'menu-item');
+      menuEl.textContent = recommendedMenu;
+      menuContainer.appendChild(menuEl);
     };
 
-    button.addEventListener('click', generateNumbers);
+    button.addEventListener('click', recommendDinner);
 
     shadow.appendChild(style);
     shadow.appendChild(wrapper);
     wrapper.appendChild(title);
-    wrapper.appendChild(numbersContainer);
+    wrapper.appendChild(menuContainer);
     wrapper.appendChild(button);
 
-    generateNumbers();
+    recommendDinner();
   }
 }
 
-
-customElements.define('lotto-generator', LottoGenerator);
+customElements.define('dinner-recommender', DinnerRecommender);
 
 class ThemeToggle extends HTMLElement {
   constructor() {

@@ -1,25 +1,21 @@
-# Lotto Number Generator
+# Dinner Menu Recommendation Site
 
-## Overview
+This project is a simple web application that recommends a random dinner menu.
 
-A simple, modern web application to generate random lottery numbers.
+## Features
 
-## Project Outline
+*   **Random Menu Recommendation:** Users can click a button to get a random dinner menu recommendation.
+*   **Theme Toggle:** Users can switch between light and dark themes.
 
-*   **HTML (`index.html`):**
-    *   Basic structure with a title and a main container.
-    *   A custom web component `<lotto-generator>` will handle the UI.
-*   **CSS (`style.css`):**
-    *   Modern styling for the page, including a clean layout, fonts, and a vibrant color scheme.
-    *   Styles for the generated numbers and the "Generate" button.
-*   **JavaScript (`main.js`):**
-    *   Defines the `<lotto-generator>` custom element.
-    *   The component will generate 6 unique random numbers from 1 to 45.
-    *   It will handle rendering the numbers and the "Generate" button.
+## Design
 
-## Current Plan
+*   **Layout:** A simple, centered layout with a title, a button, and a display area for the recommended menu.
+*   **Styling:** A clean and modern design with a custom color scheme.
+*   **Components:** The application is built with Web Components.
 
-*   Create the initial `blueprint.md` file.
-*   Modify `index.html` to include the `<lotto-generator>` element.
-*   Modify `style.css` with a modern design.
-*   Modify `main.js` to create the `lotto-generator` web component.
+## Plan
+
+*   [x] Understand the existing code
+*   [x] Create a blueprint for the new site
+*   [x] Modify the HTML, CSS, and JavaScript files
+*   [ ] Commit changes to git
