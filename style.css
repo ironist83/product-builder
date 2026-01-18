@@ -59,21 +59,22 @@ header h1 {
     width: 100%;
 }
 
-#ig-embed-container {
+#instagram-container {
     background: rgba(0,0,0,0.2);
     border-radius: 15px;
     padding: 10px;
-    min-height: 400px;
+    min-height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    overflow: hidden; /* Helps contain the embed */
+    margin: 0 auto 30px;
+    overflow: hidden;
+    max-width: 550px;
 }
 
 /* Make the Instagram embed responsive */
 .instagram-media {
-    margin: auto !important; /* Force centering */
+    margin: auto !important;
     width: calc(100% - 2px) !important;
     min-width: 320px !important;
 }
@@ -101,8 +102,8 @@ header h1 {
 #choices-container button:not(:disabled):hover {
     background-color: var(--neon-pink);
     color: var(--background-start);
-    box-shadow: 0 0 15px var(--glow-pink), 0 0 25px var(--glow-pink);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--glow-pink), 0 0 30px var(--glow-pink), 0 0 45px var(--glow-pink), inset 0 0 10px var(--glow-pink);
 }
 
 /* --- Answer animations and styles --- */
