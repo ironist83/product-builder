@@ -1,136 +1,174 @@
-class DinnerRecommender extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: 'open' });
+class KpopQuiz {
+    constructor() {
+        this.artists = [];
+        this.currentArtistIndex = 0;
+        this.score = 0;
+        this.usedArtists = new Set();
 
-    const wrapper = document.createElement('div');
-    wrapper.setAttribute('class', 'wrapper');
+        this.scoreEl = document.getElementById('score');
+        this.progressEl = document.getElementById('progress');
+        this.totalQuestionsEl = document.getElementById('total-questions');
+        this.igContainer = document.getElementById('ig-embed-container');
+        this.choicesContainer = document.getElementById('choices-container');
 
-    const title = document.createElement('h1');
-    title.textContent = 'Dinner Menu Recommendation';
+        this.init();
+    }
 
-    const menuContainer = document.createElement('div');
-    menuContainer.setAttribute('class', 'menu');
+    async init() {
+        await this.loadArtists();
+        this.totalQuestionsEl.textContent = this.artists.length;
+        this.loadQuestion();
+    }
 
-    const button = document.createElement('button');
-    button.textContent = 'Recommend Dinner';
+    async loadArtists() {
+        try {
+            const response = await fetch('artists.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            this.artists = await response.json();
+        } catch (error) {
+            console.error("Could not load artists:", error);
+            this.igContainer.innerHTML = `<p>Error loading quiz data. Please check the console.</p>`;
+        }
+    }
 
-    const style = document.createElement('style');
-    style.textContent = `
-      .wrapper {
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.5rem;
-        color: var(--accent-color);
-        margin-bottom: 2rem;
-      }
-      .menu {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        justify-content: center;
-      }
-      .menu-item {
-        display: grid;
-        place-content: center;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: var(--accent-color);
-        color: white;
-        font-size: 1.5rem;
-        font-weight: bold;
-        box-shadow: 0 5px 10px -2px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.4);
-      }
-      button {
-        background-color: var(--accent-color);
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        box-shadow: 0 5px 10px -2px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.4);
-      }
-      button:hover {
-        background-color: oklch(from var(--accent-color) calc(l - 0.05) c h);
-      }
-    `;
+    loadQuestion() {
+        if (this.usedArtists.size >= this.artists.length) {
+            this.endGame();
+            return;
+        }
 
-    const dinnerMenus = [
-      "Bibimbap", "Kimchi Jjigae", "Bulgogi", "Samgyeopsal", "Japchae",
-      "Haemul Pajeon", "Sundubu Jjigae", "Tteokbokki", "Galbi", "Doenjang Jjigae"
-    ];
+        let artist;
+        if (this.usedArtists.size === 0) {
+            // First question: Find Jennie
+            artist = this.artists.find(a => a.name.en === 'Jennie');
+        } else {
+            // Subsequent questions: Find a random, unused artist
+            do {
+                const randomIndex = Math.floor(Math.random() * this.artists.length);
+                artist = this.artists[randomIndex];
+            } while (this.usedArtists.has(artist.id));
+        }
+        
+        this.currentArtist = artist;
+        this.usedArtists.add(this.currentArtist.id);
 
-    const recommendDinner = () => {
-      const randomIndex = Math.floor(Math.random() * dinnerMenus.length);
-      const recommendedMenu = dinnerMenus[randomIndex];
-      menuContainer.innerHTML = '';
-      const menuEl = document.createElement('div');
-      menuEl.setAttribute('class', 'menu-item');
-      menuEl.textContent = recommendedMenu;
-      menuContainer.appendChild(menuEl);
-    };
+        this.updateProgress();
+        this.displayInstagramEmbed(this.currentArtist.instagram_url);
+        this.generateChoices(this.currentArtist.birth_date);
+    }
+    
+    updateProgress() {
+        this.progressEl.textContent = this.usedArtists.size;
+        this.scoreEl.textContent = this.score;
+    }
 
-    button.addEventListener('click', recommendDinner);
+    displayInstagramEmbed(url) {
+        this.igContainer.innerHTML = ''; // Clear previous embed
+        if (!url) {
+            this.igContainer.innerHTML = `<p>This artist's Instagram is not available. Guess their age!</p>`;
+            return;
+        }
 
-    shadow.appendChild(style);
-    shadow.appendChild(wrapper);
-    wrapper.appendChild(title);
-    wrapper.appendChild(menuContainer);
-    wrapper.appendChild(button);
+        const blockquote = document.createElement('blockquote');
+        blockquote.className = 'instagram-media';
+        blockquote.setAttribute('data-instgrm-captioned', '');
+        blockquote.setAttribute('data-instgrm-permalink', url);
+        blockquote.setAttribute('data-instgrm-version', '14');
+        this.igContainer.appendChild(blockquote);
 
-    recommendDinner();
-  }
+        this.loadInstagramScript();
+    }
+
+    loadInstagramScript() {
+        if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = "//www.instagram.com/embed.js";
+            document.body.appendChild(script);
+        } else {
+            // If script is already there, tell it to process the new embed
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            }
+        }
+    }
+
+    calculateAge(birthDate) {
+        const birth = new Date(birthDate);
+        const today = new Date('2026-01-18'); // As specified in the context
+        let age = today.getFullYear() - birth.getFullYear();
+        const monthDifference = today.getMonth() - birth.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+        return age;
+    }
+    
+    generateChoices(birthDate) {
+        const correctAge = this.calculateAge(birthDate);
+        const choices = new Set([correctAge]);
+
+        // Generate 3 unique wrong answers
+        while (choices.size < 4) {
+            const randomFactor = Math.floor(Math.random() * 5) - 2; // -2, -1, 0, 1, 2
+            if (randomFactor === 0) continue; // Ensure we don't add the same age
+            const wrongAge = correctAge + randomFactor;
+            if (wrongAge > 0) { // Ensure age is positive
+               choices.add(wrongAge);
+            }
+        }
+
+        const shuffledChoices = Array.from(choices).sort(() => Math.random() - 0.5);
+        this.displayChoices(shuffledChoices, correctAge);
+    }
+
+    displayChoices(choices, correctAge) {
+        this.choicesContainer.innerHTML = '';
+        choices.forEach(age => {
+            const button = document.createElement('button');
+            button.textContent = age;
+            button.onclick = () => this.handleAnswer(age, correctAge);
+            this.choicesContainer.appendChild(button);
+        });
+    }
+
+    handleAnswer(selectedAge, correctAge) {
+        // Disable buttons after an answer is selected
+        this.choicesContainer.querySelectorAll('button').forEach(btn => {
+            btn.disabled = true;
+            if (parseInt(btn.textContent) === correctAge) {
+                btn.classList.add('correct');
+            } else {
+                btn.classList.add('incorrect');
+            }
+        });
+        
+        if (selectedAge === correctAge) {
+            this.score++;
+            alert('Correct!');
+        } else {
+            alert(`Wrong! The correct age is ${correctAge}.`);
+        }
+
+        this.updateProgress();
+
+        // Wait a moment before loading the next question
+        setTimeout(() => this.loadQuestion(), 2000);
+    }
+
+    endGame() {
+        this.igContainer.innerHTML = '';
+        this.choicesContainer.innerHTML = `<div class="game-over">
+            <h2>Game Over!</h2>
+            <p>Your final score is ${this.score} out of ${this.artists.length}.</p>
+            <button onclick="location.reload()">Play Again</button>
+            </div>`;
+    }
 }
 
-customElements.define('dinner-recommender', DinnerRecommender);
-
-class ThemeToggle extends HTMLElement {
-  constructor() {
-    super();
-    const shadow = this.attachShadow({ mode: 'open' });
-
-    const button = document.createElement('button');
-    button.textContent = 'Toggle Theme';
-
-    const style = document.createElement('style');
-    style.textContent = `
-      button {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        background-color: var(--accent-color);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        box-shadow: 0 5px 10px -2px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.4);
-      }
-      button:hover {
-        background-color: oklch(from var(--accent-color) calc(l - 0.05) c h);
-      }
-    `;
-
-    const toggleTheme = () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    };
-
-    button.addEventListener('click', toggleTheme);
-
-    shadow.appendChild(style);
-    shadow.appendChild(button);
-  }
-}
-
-customElements.define('theme-toggle', ThemeToggle);
-
+// Start the quiz once the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new KpopQuiz();
+});

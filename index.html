@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinner Menu Recommendation</title>
+    <title>K-pop Forever Young Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <theme-toggle></theme-toggle>
-    <dinner-recommender></dinner-recommender>
+    <header>
+        <h1>K-pop Forever Young Quiz</h1>
+        <div id="quiz-info">
+            <p>Score: <span id="score">0</span></p>
+            <p>Progress: <span id="progress">0</span> / <span id="total-questions">0</span></p>
+        </div>
+    </header>
 
-    <section id="affiliate-inquiry">
-        <h2>Affiliate Inquiry</h2>
-        <form action="https://formspree.io/f/mojjjykn" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
-            <button type="submit">Send Inquiry</button>
-        </form>
-    </section>
+    <main id="quiz-container">
+        <div id="ig-embed-container">
+            <!-- Instagram embed will be loaded here -->
+        </div>
+        <div id="choices-container">
+            <!-- Choice buttons will be generated here -->
+        </div>
+    </main>
+    
     <script src="main.js"></script>
 </body>
 </html>

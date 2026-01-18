@@ -1,114 +1,197 @@
-@layer base, components;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-@layer base {
-  :root {
-    --brand-hue: 280;
-  }
-
-  :root,
-  [data-theme="light"] {
-    --main-bg: oklch(98% 0.02 var(--brand-hue));
-    --text-color: oklch(20% 0.1 var(--brand-hue));
-    --accent-color: oklch(65% 0.25 var(--brand-hue));
-    --surface-color: oklch(95% 0.05 var(--brand-hue));
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --main-bg: oklch(20% 0.02 var(--brand-hue));
-      --text-color: oklch(98% 0.1 var(--brand-hue));
-      --accent-color: oklch(75% 0.25 var(--brand-hue));
-      --surface-color: oklch(30% 0.05 var(--brand-hue));
-    }
-  }
-
-  [data-theme="dark"] {
-    --main-bg: oklch(20% 0.02 var(--brand-hue));
-    --text-color: oklch(98% 0.1 var(--brand-hue));
-    --accent-color: oklch(75% 0.25 var(--brand-hue));
-    --surface-color: oklch(30% 0.05 var(--brand-hue));
-  }
-
-  :root {
-    font-family: system-ui, sans-serif;
-  }
-
-  body {
-    background-color: var(--main-bg);
-    color: var(--text-color);
-    margin: 0;
-    display: grid;
-    place-content: center;
-    min-height: 100vh;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-  }
+:root {
+    --background-start: #10001C;
+    --background-end: #000000;
+    --text-primary: #EAEAEA;
+    --neon-pink: #FF00E6;
+    --glow-pink: rgba(255, 0, 230, 0.7);
+    --correct-green: #00FF7F;
+    --glow-green: rgba(0, 255, 127, 0.7);
+    --incorrect-red: #FF3B3B;
+    --glow-red: rgba(255, 59, 59, 0.7);
+    --disabled-bg: #333;
+    --disabled-text: #777;
 }
 
-@layer components {
-  dinner-recommender,
-  #affiliate-inquiry {
-    display: block;
-    background-color: var(--surface-color);
-    padding: 2rem 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 20px -5px oklch(from var(--accent-color) calc(l - 0.1) c h / 0.3),
-                0 20px 40px -10px oklch(from var(--accent-color) calc(l - 0.2) c h / 0.4);
-    margin-bottom: 2rem; /* Add some space below the form */
-  }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-  #affiliate-inquiry h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
-  }
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    background: linear-gradient(145deg, var(--background-start), var(--background-end));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
 
-  #affiliate-inquiry form {
-    display: grid;
-    gap: 1rem;
-  }
-
-  #affiliate-inquiry label {
-    font-weight: bold;
-    color: var(--text-color);
-  }
-
-  #affiliate-inquiry input[type="text"],
-  #affiliate-inquiry input[type="email"],
-  #affiliate-inquiry textarea {
+header, main {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid oklch(from var(--text-color) l c h / 0.3);
-    border-radius: 0.5rem;
-    background-color: oklch(from var(--main-bg) calc(l + 0.05) c h);
-    color: var(--text-color);
-    box-sizing: border-box; /* Ensures padding doesn't increase width */
-  }
+    max-width: 500px;
+    text-align: center;
+}
 
-  #affiliate-inquiry input:focus,
-  #affiliate-inquiry textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px oklch(from var(--accent-color) l c h / 0.3);
-  }
+header h1 {
+    font-size: 2.5rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
+    margin-bottom: 20px;
+}
 
-  #affiliate-inquiry button[type="submit"] {
-    background-color: var(--accent-color);
-    color: var(--main-bg); /* Use main-bg for text color on accent background */
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
+#quiz-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+#quiz-container {
+    width: 100%;
+}
+
+#ig-embed-container {
+    background: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    padding: 10px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    overflow: hidden; /* Helps contain the embed */
+}
+
+/* Make the Instagram embed responsive */
+.instagram-media {
+    margin: auto !important; /* Force centering */
+    width: calc(100% - 2px) !important;
+    min-width: 320px !important;
+}
+
+#choices-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+#choices-container button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--neon-pink);
+    background-color: transparent;
+    border: 2px solid var(--neon-pink);
+    border-radius: 10px;
+    padding: 15px;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
-  }
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 0 5px var(--glow-pink), inset 0 0 5px var(--glow-pink);
+}
 
-  #affiliate-inquiry button[type="submit"]:hover {
-    background-color: oklch(from var(--accent-color) calc(l - 0.1) c h);
-    transform: translateY(-2px);
-  }
+#choices-container button:not(:disabled):hover {
+    background-color: var(--neon-pink);
+    color: var(--background-start);
+    box-shadow: 0 0 15px var(--glow-pink), 0 0 25px var(--glow-pink);
+    transform: translateY(-3px);
+}
 
-  #affiliate-inquiry button[type="submit"]:active {
-    transform: translateY(0);
-  }
+/* --- Answer animations and styles --- */
+
+@keyframes correct-animation {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes incorrect-animation {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+#choices-container button.correct {
+    background-color: var(--correct-green);
+    border-color: var(--correct-green);
+    color: var(--background-end);
+    box-shadow: 0 0 15px var(--glow-green);
+    animation: correct-animation 0.5s ease-in-out;
+}
+
+#choices-container button.incorrect {
+    background-color: var(--incorrect-red);
+    border-color: var(--incorrect-red);
+    color: var(--text-primary);
+    box-shadow: 0 0 15px var(--glow-red);
+    animation: incorrect-animation 0.5s ease-in-out;
+}
+
+#choices-container button:disabled {
+    cursor: not-allowed;
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    border-color: var(--disabled-bg);
+    box-shadow: none;
+}
+
+/* Game Over Screen */
+.game-over {
+    padding: 40px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.game-over h2 {
+    font-size: 2.5rem;
+    color: var(--neon-pink);
+    margin-bottom: 20px;
+}
+
+.game-over button {
+    font-size: 1.2rem;
+    color: var(--background-start);
+    background-color: var(--neon-pink);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.game-over button:hover {
+     box-shadow: 0 0 15px var(--glow-pink);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #quiz-info {
+        font-size: 1rem;
+    }
+
+    #choices-container {
+        grid-template-columns: 1fr; /* Stack buttons vertically on very small screens */
+    }
+
+    #choices-container button {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
 }

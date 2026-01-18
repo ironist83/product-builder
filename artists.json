@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "kr": "제니",
+      "en": "Jennie"
+    },
+    "group": "BLACKPINK",
+    "birth_date": "1996-01-16",
+    "instagram_url": "https://www.instagram.com/jennierubyjane/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "name": {
+      "kr": "나연",
+      "en": "Nayeon"
+    },
+    "group": "TWICE",
+    "birth_date": "1995-09-22",
+    "instagram_url": "https://www.instagram.com/nayeonyny/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 3,
+    "name": {
+      "kr": "장원영",
+      "en": "Jang Won-young"
+    },
+    "group": "IVE",
+    "birth_date": "2004-08-31",
+    "instagram_url": "https://www.instagram.com/for_everyoung10/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "name": {
+      "kr": "지수",
+      "en": "Jisoo"
+    },
+    "group": "BLACKPINK",
+    "birth_date": "1995-01-03",
+    "instagram_url": "https://www.instagram.com/sooyaaa__/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 5,
+    "name": {
+      "kr": "사나",
+      "en": "Sana"
+    },
+    "group": "TWICE",
+    "birth_date": "1996-12-29",
+    "instagram_url": "https://www.instagram.com/m.by__sana/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 6,
+    "name": {
+      "kr": "안유진",
+      "en": "An Yu-jin"
+    },
+    "group": "IVE",
+    "birth_date": "2003-09-01",
+    "instagram_url": "https://www.instagram.com/_yujin_an/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "name": {
+      "kr": "로제",
+      "en": "Rosé"
+    },
+    "group": "BLACKPINK",
+    "birth_date": "1997-02-11",
+    "instagram_url": "https://www.instagram.com/roses_are_rosie/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 8,
+    "name": {
+      "kr": "지효",
+      "en": "Jihyo"
+    },
+    "group": "TWICE",
+    "birth_date": "1997-02-01",
+    "instagram_url": "https://www.instagram.com/_zyozyo/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 9,
+    "name": {
+      "kr": "이서",
+      "en": "Leeseo"
+    },
+    "group": "IVE",
+    "birth_date": "2007-02-21",
+    "instagram_url": null,
+    "difficulty": "hard"
+  },
+  {
+    "id": 10,
+    "name": {
+      "kr": "리사",
+      "en": "Lisa"
+    },
+    "group": "BLACKPINK",
+    "birth_date": "1997-03-27",
+    "instagram_url": "https://www.instagram.com/lalalalisa_m/",
+    "difficulty": "easy"
+  },
+  {
+    "id": 11,
+    "name": {
+      "kr": "모모",
+      "en": "Momo"
+    },
+    "group": "TWICE",
+    "birth_date": "1996-11-09",
+    "instagram_url": "https://www.instagram.com/momo/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 12,
+    "name": {
+      "kr": "가을",
+      "en": "Gaeul"
+    },
+    "group": "IVE",
+    "birth_date": "2002-09-24",
+    "instagram_url": null,
+    "difficulty": "medium"
+  },
+  {
+    "id": 13,
+    "name": {
+      "kr": "아린",
+      "en": "Arin"
+    },
+    "group": "OH MY GIRL",
+    "birth_date": "1999-06-18",
+    "instagram_url": "https://www.instagram.com/ye._.vely618/",
+    "difficulty": "hard"
+  },
+  {
+    "id": 14,
+    "name": {
+      "kr": "수빈",
+      "en": "Soobin"
+    },
+    "group": "WJSN",
+    "birth_date": "1996-09-14",
+    "instagram_url": "https://www.instagram.com/soobly_s2/",
+    "difficulty": "hard"
+  },
+  {
+    "id": 15,
+    "name": {
+      "kr": "츄",
+      "en": "Chuu"
+    },
+    "group": "Solo",
+    "birth_date": "1999-10-20",
+    "instagram_url": "https://www.instagram.com/chuuo3o/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 16,
+    "name": {
+      "kr": "하니",
+      "en": "Hanni"
+    },
+    "group": "NewJeans",
+    "birth_date": "2004-10-06",
+    "instagram_url": null,
+    "difficulty": "medium"
+  },
+  {
+    "id": 17,
+    "name": {
+      "kr": "해린",
+      "en": "Haerin"
+    },
+    "group": "NewJeans",
+    "birth_date": "2006-05-15",
+    "instagram_url": null,
+    "difficulty": "hard"
+  },
+  {
+    "id": 18,
+    "name": {
+      "kr": "윈터",
+      "en": "Winter"
+    },
+    "group": "aespa",
+    "birth_date": "2001-01-01",
+    "instagram_url": "https://www.instagram.com/imwinter/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 19,
+    "name": {
+      "kr": "카즈하",
+      "en": "Kazuha"
+    },
+    "group": "LE SSERAFIM",
+    "birth_date": "2003-08-09",
+    "instagram_url": "https://www.instagram.com/k_a_z_u_h_a__/",
+    "difficulty": "medium"
+  },
+  {
+    "id": 20,
+    "name": {
+      "kr": "유아",
+      "en": "YooA"
+    },
+    "group": "OH MY GIRL",
+    "birth_date": "1995-09-17",
+    "instagram_url": "https://www.instagram.com/yoo__sha/",
+    "difficulty": "hard"
+  }
+]
