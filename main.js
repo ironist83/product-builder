@@ -15,9 +15,19 @@ class KpopQuiz {
     }
 
     async init() {
+        this.ensureInstagramScript();
         await this.loadArtists();
         this.totalQuestionsEl.textContent = this.artists.length;
         this.loadQuestion();
+    }
+
+    ensureInstagramScript() {
+        if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = "//www.instagram.com/embed.js";
+            document.head.appendChild(script);
+        }
     }
 
     async loadArtists() {
@@ -78,20 +88,9 @@ class KpopQuiz {
         blockquote.setAttribute('data-instgrm-version', '14');
         this.igContainer.appendChild(blockquote);
 
-        this.loadInstagramScript();
-    }
-
-    loadInstagramScript() {
-        if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = "//www.instagram.com/embed.js";
-            document.body.appendChild(script);
-        } else {
-            // If script is already there, tell it to process the new embed
-            if (window.instgrm) {
-                window.instgrm.Embeds.process();
-            }
+        // Explicitly call the Instagram processing function if it's available
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
         }
     }
 
