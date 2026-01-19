@@ -1,1 +1,18 @@
- 
+[
+  { "id": 1, "name": { "kr": "지수", "en": "Jisoo" }, "group": "BLACKPINK", "birth_date": "1995-01-03", "instagram_url": "https://www.instagram.com/p/C6dB_RMpIeS/", "difficulty": "easy" },
+  { "id": 2, "name": { "kr": "제니", "en": "Jennie" }, "group": "BLACKPINK", "birth_date": "1996-01-16", "instagram_url": "https://www.instagram.com/p/DNentGdpgGg/", "difficulty": "easy" },
+  { "id": 3, "name": { "kr": "로제", "en": "Rosé" }, "group": "BLACKPINK", "birth_date": "1997-02-11", "instagram_url": "https://www.instagram.com/p/DCiTlZ2TftG/", "difficulty": "easy" },
+  { "id": 4, "name": { "kr": "리사", "en": "Lisa" }, "group": "BLACKPINK", "birth_date": "1997-03-27", "instagram_url": "https://www.instagram.com/p/DSqfRKpE2BF/", "difficulty": "easy" },
+  { "id": 5, "name": { "kr": "아이유", "en": "IU" }, "group": "Solo", "birth_date": "1993-05-16", "instagram_url": "https://www.instagram.com/p/DS4Qz3FEp-K/", "difficulty": "easy" },
+  { "id": 6, "name": { "kr": "차은우", "en": "Cha Eun-woo" }, "group": "ASTRO", "birth_date": "1997-03-30", "instagram_url": "https://www.instagram.com/p/DKOi9UFxka_/", "difficulty": "easy" },
+  { "id": 7, "name": { "kr": "나연", "en": "Nayeon" }, "group": "TWICE", "birth_date": "1995-09-22", "instagram_url": "https://www.instagram.com/p/DDM3OIfyuJj/", "difficulty": "easy" },
+  { "id": 8, "name": { "kr": "민규", "en": "Mingyu" }, "group": "SEVENTEEN", "birth_date": "1997-04-06", "instagram_url": "https://www.instagram.com/p/DTKyjnxE9a7/", "difficulty": "medium" },
+  { "id": 9, "name": { "kr": "조이", "en": "Joy" }, "group": "Red Velvet", "birth_date": "1996-09-03", "instagram_url": "https://www.instagram.com/p/DSyqH2AEuVD/", "difficulty": "medium" },
+  { "id": 10, "name": { "kr": "미연", "en": "Miyeon" }, "group": "(G)I-DLE", "birth_date": "1997-01-31", "instagram_url": "https://www.instagram.com/p/DSq-SpZAfZW/", "difficulty": "medium" },
+  { "id": 11, "name": { "kr": "카리나", "en": "Karina" }, "group": "aespa", "birth_date": "2000-04-11", "instagram_url": "https://www.instagram.com/p/DOioacbgDNK/", "difficulty": "medium" },
+  { "id": 12, "name": { "kr": "안유진", "en": "An Yu-jin" }, "group": "IVE", "birth_date": "2003-09-01", "instagram_url": "https://www.instagram.com/p/DSMEbEKAQR5/", "difficulty": "medium" },
+  { "id": 13, "name": { "kr": "장원영", "en": "Jang Won-young" }, "group": "IVE", "birth_date": "2004-08-31", "instagram_url": "https://www.instagram.com/p/DSsAVJ8kehD/", "difficulty": "medium" },
+  { "id": 14, "name": { "kr": "사쿠라", "en": "Sakura" }, "group": "LE SSERAFIM", "birth_date": "1998-03-19", "instagram_url": "https://www.instagram.com/p/DRy6aKMk2iI/", "difficulty": "hard" },
+  { "id": 15, "name": { "kr": "연준", "en": "Yeonjun" }, "group": "TXT", "birth_date": "1999-09-13", "instagram_url": "https://www.instagram.com/p/DQ9Nq7VCQBd/", "difficulty": "hard" },
+  { "id": 16, "name": { "kr": "필릭스", "en": "Felix" }, "group": "Stray Kids", "birth_date": "2000-09-15", "instagram_url": "https://www.instagram.com/p/DRQr_16ifed/", "difficulty": "hard" }
+]
