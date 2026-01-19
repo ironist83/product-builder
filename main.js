@@ -9,42 +9,60 @@ class KpopQuiz {
         this.totalQuestionsEl = document.getElementById('total-questions');
         this.igContainer = document.getElementById('instagram-container');
         this.choicesContainer = document.getElementById('choices-container');
+        this.loadingOverlayEl = document.getElementById('loading-overlay');
 
         this.init();
     }
 
     async init() {
-        await this.loadArtists();
-        this.totalQuestionsEl.textContent = this.artists.length;
-        this.loadQuestion();
+        this.showLoading(true);
+        try {
+            await this.loadArtists();
+            
+            if (this.artists.length === 0) {
+                this.showError("No quiz data found. The file might be empty.");
+                return;
+            }
+
+            this.totalQuestionsEl.textContent = this.artists.length;
+            this.loadQuestion();
+        } catch (error) {
+            console.error("Initialization failed:", error);
+            this.showError(error.message);
+        } finally {
+            this.showLoading(false);
+        }
+    }
+    
+    showLoading(isLoading) {
+        this.loadingOverlayEl.style.opacity = isLoading ? '1' : '0';
+        this.loadingOverlayEl.style.pointerEvents = isLoading ? 'all' : 'none';
+    }
+
+    showError(message) {
+        this.igContainer.innerHTML = `<p style="color: var(--incorrect-red);">${message}</p>`;
     }
 
     async loadArtists() {
-        try {
-            const response = await fetch('artists.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            let artistsData = await response.json();
+        const response = await fetch('artists.json');
+        if (!response.ok) {
+            throw new Error(`Failed to load quiz data. (HTTP status: ${response.status})`);
+        }
+        const artistsData = await response.json();
 
-            // Fisher-Yates shuffle algorithm
-            for (let i = artistsData.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [artistsData[i], artistsData[j]] = [artistsData[j], artistsData[i]];
-            }
-            
-            this.artists = artistsData;
-            
-            // As requested, ensure Jennie is the first question if she exists
-            const jennieIndex = this.artists.findIndex(a => a.name.en === 'Jennie');
-            if (jennieIndex > 0) {
-                const jennie = this.artists.splice(jennieIndex, 1)[0];
-                this.artists.unshift(jennie);
-            }
-
-        } catch (error) {
-            console.error("Could not load artists:", error);
-            this.igContainer.innerHTML = `<p>Error loading quiz data. Please check the console.</p>`;
+        // Fisher-Yates shuffle algorithm
+        for (let i = artistsData.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [artistsData[i], artistsData[j]] = [artistsData[j], artistsData[i]];
+        }
+        
+        this.artists = artistsData;
+        
+        // As requested, ensure Jennie is the first question if she exists
+        const jennieIndex = this.artists.findIndex(a => a.name.en === 'Jennie');
+        if (jennieIndex > 0) {
+            const jennie = this.artists.splice(jennieIndex, 1)[0];
+            this.artists.unshift(jennie);
         }
     }
 
@@ -60,7 +78,7 @@ class KpopQuiz {
         this.updateProgress();
         this.displayInstagramEmbed(this.currentArtist.instagram_url);
         this.generateChoices(this.currentArtist.birth_date);
-        this.updateDisqus(artist); // Add this line
+        this.updateDisqus(artist);
     }
     
     updateDisqus(artist) {
@@ -96,6 +114,7 @@ class KpopQuiz {
 
     displayInstagramEmbed(url) {
         this.igContainer.innerHTML = ''; // Clear previous embed
+        this.choicesContainer.innerHTML = ''; // Clear choices while loading
         if (!url) {
             this.igContainer.innerHTML = `<p>This artist's Instagram is not available. Guess their age!</p>`;
             return;
@@ -105,11 +124,16 @@ class KpopQuiz {
         blockquote.className = 'instagram-media';
         blockquote.setAttribute('data-instgrm-permalink', url);
         blockquote.setAttribute('data-instgrm-version', '14');
-        blockquote.setAttribute('data-instgrm-captioned', 'false'); // Added to hide captions
+        blockquote.setAttribute('data-instgrm-captioned', 'false');
         this.igContainer.appendChild(blockquote);
 
+        // Ensure the Instagram script is loaded and can process the new embed
         if (window.instgrm) {
             window.instgrm.Embeds.process();
+        } else {
+            // If the script isn't loaded yet, which can happen on fast connections,
+            // we might need to manually load it or wait for it.
+            // For now, we rely on the async script in index.html.
         }
     }
 
@@ -128,8 +152,9 @@ class KpopQuiz {
         const correctAge = this.calculateAge(birthDate);
         const choices = new Set([correctAge]);
 
+        // Generate 3 unique incorrect answers
         while (choices.size < 4) {
-            const randomFactor = Math.floor(Math.random() * 5) - 2;
+            const randomFactor = Math.floor(Math.random() * 5) - 2; // -2, -1, 1, 2
             if (randomFactor === 0) continue;
             const wrongAge = correctAge + randomFactor;
             if (wrongAge > 0) {
@@ -165,25 +190,29 @@ class KpopQuiz {
         
         if (selectedAge === correctAge) {
             this.score++;
-            alert('Correct!');
-        } else {
-            alert(`Wrong! The correct age is ${correctAge}.`);
         }
 
         this.currentArtistIndex++;
-        this.updateProgress();
-
-        setTimeout(() => this.loadQuestion(), 2000);
+        
+        setTimeout(() => {
+            this.updateProgress();
+            this.loadQuestion();
+        }, 2000);
     }
 
     endGame() {
-        this.progressEl.textContent = this.currentArtistIndex;
+        this.progressEl.textContent = this.artists.length; // Show final progress
         this.igContainer.innerHTML = '';
         this.choicesContainer.innerHTML = `<div class="game-over">
             <h2>Game Over!</h2>
             <p>Your final score is ${this.score} out of ${this.artists.length}.</p>
             <button onclick="location.reload()">Play Again</button>
             </div>`;
+        // Hide Disqus on the game over screen
+        const disqusThread = document.getElementById('disqus_thread');
+        if (disqusThread) {
+            disqusThread.style.display = 'none';
+        }
     }
 }
 
