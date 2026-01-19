@@ -78,6 +78,7 @@ class KpopQuiz {
         blockquote.className = 'instagram-media';
         blockquote.setAttribute('data-instgrm-permalink', url);
         blockquote.setAttribute('data-instgrm-version', '14');
+        blockquote.setAttribute('data-instgrm-captioned', 'false'); // Added to hide captions
         this.igContainer.appendChild(blockquote);
 
         if (window.instgrm) {

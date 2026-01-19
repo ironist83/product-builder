@@ -54,12 +54,14 @@ header h1 {
 
 .info-chip {
     flex: 1;
-    background: rgba(255, 255, 255, 0.08);
-    padding: 12px;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1); /* Slightly more prominent background */
+    padding: 14px; /* Increased padding */
+    border-radius: 25px; /* Slightly more rounded */
+    font-size: 1.3rem; /* Increased font size */
+    font-weight: 700; /* Bolder font weight */
     text-align: center;
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 #quiz-container {
@@ -67,9 +69,9 @@ header h1 {
 }
 
 #instagram-container {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.25); /* Slightly darker background */
     border-radius: 16px;
-    padding: 10px;
+    padding: 20px; /* Increased padding */
     min-height: 500px;
     display: flex;
     justify-content: center;
@@ -77,7 +79,7 @@ header h1 {
     margin: 0 auto 30px;
     overflow: hidden;
     max-width: 550px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Stronger box-shadow */
 }
 
 /* Make the Instagram embed responsive */
