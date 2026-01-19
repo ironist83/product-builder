@@ -1,40 +1,40 @@
-# Blueprint: Dinner Menu Recommendation and Affiliate Inquiry
+# Blueprint: K-pop Forever Young Quiz
 
 ## Overview
-This project provides a web-based dinner menu recommendation system and an affiliate inquiry form. It leverages Web Components for modularity and modern CSS for styling, including theme toggling.
+This project is an interactive web-based quiz application. It tests users' knowledge of K-pop artists' ages based on their Instagram posts. The app features a dynamic UI, fetches quiz data from a JSON file, and provides real-time feedback on user answers.
 
 ## Project Outline
 
-### Initial Version (Dinner Menu Recommendation)
-- **Purpose:** Recommends dinner menu items.
-- **Technologies:** HTML, CSS (modern features like Container Queries, Cascade Layers, CSS Variables), JavaScript (ES Modules, Async/Await, Fetch API).
-- **UI Components:**
-    - `<theme-toggle>`: Web Component for switching between light and dark themes.
-    - `<dinner-recommender>`: Web Component for displaying dinner recommendations.
-- **Styling:** Uses CSS variables for theming, modern color spaces, and responsive design.
-- **Structure:** `index.html` for the main structure, `style.css` for styling, `main.js` for JavaScript logic and Web Component definitions.
-
-### Current Version (Affiliate Inquiry Form)
-- **Purpose:** Provides a simple form for users to submit affiliate inquiries, integrated with Formspree for backend processing.
-- **Features:**
-    - A form with input fields for Name, Email, and Message.
-    - Uses Formspree (`https://formspree.io/f/mojjjykn`) as the form submission endpoint.
-- **Integration:** Added directly to `index.html` as a `<section>` element.
+### Core Features
+- **Purpose:** A quiz game to guess the age of K-pop artists.
+- **Technologies:** HTML, CSS, JavaScript (ES Modules, Async/Await, Fetch API).
+- **Data:** Artist information (name, Instagram URL, birth date) is loaded from `artists.json`.
+- **UI:**
+    - Displays artist's Instagram post as a visual clue.
+    - Dynamically generates multiple-choice buttons for age selection.
+    - Shows real-time score and progress.
+    - Provides visual feedback for correct/incorrect answers.
+    - Includes a "Game Over" screen with a final score and a "Play Again" option.
 - **Styling:**
-    - Integrated with the existing theme using CSS variables (`--surface-color`, `--text-color`, `--accent-color`, etc.).
-    - Styled to match the aesthetic of the existing `dinner-recommender` component, including padding, border-radius, and box-shadow.
-    - Form elements (labels, inputs, textarea, button) are styled for clarity and user experience, with focus states and hover effects.
+    - Modern, dark, neon-themed aesthetic.
+    - Responsive design for mobile and desktop.
+    - Uses CSS variables for consistent theming.
+    - Enhanced readability for score/progress chips.
+    - Card-style layout for the Instagram embed container.
+- **Instagram Integration:**
+    - Dynamically embeds Instagram posts using the official embed script.
+    - Captions are hidden to focus on the visual clue.
 
-## Plan and Steps for Current Change
-
-1.  **Modify `index.html`**:
-    - Add a new `<section id="affiliate-inquiry">` after the `<dinner-recommender>` component.
-    - Inside this section, include an `<h2>` for the title and a `<form>` element.
-    - Set the `action` attribute of the form to `https://formspree.io/f/mojjjykn` and `method` to `POST`.
-    - Add `label` and `input` elements for Name (type="text"), Email (type="email"), and a `textarea` for Message. All are `required`.
-    - Add a `button` with `type="submit"`.
-2.  **Add basic styling to `style.css`**:
-    - Extend the styling for `dinner-recommender` to also apply to `#affiliate-inquiry` for consistent card-like appearance.
-    - Add specific styles for `h2`, `form`, `label`, `input[type="text"]`, `input[type="email"]`, `textarea`, and `button[type="submit"]` within the `#affiliate-inquiry` section.
-    - Ensure styles use existing CSS variables for theme consistency.
-    - Add focus and hover effects for interactive elements.
+### Current Version (Disqus Comment Integration)
+- **Purpose:** Adds a comment section to each quiz question, allowing users to discuss each artist.
+- **Features:**
+    - A Disqus comment thread is displayed below the answer choices.
+    - Each artist/question has a separate, unique comment thread.
+- **Integration:**
+    - A `<div id="disqus_thread">` was added to `index.html` to host the comments.
+    - The standard Disqus embed script was added to `index.html`, using a placeholder `YOUR_DISQUS_SHORTNAME` which needs to be replaced by the site owner.
+    - A new `updateDisqus` function was added to `main.js`.
+- **Logic:**
+    - The `updateDisqus` function is called every time a new question is loaded (`loadQuestion`).
+    - It configures Disqus with a unique URL and identifier for the current artist, ensuring comment threads are distinct for each question.
+    - It uses `DISQUS.reset()` to reload the comment thread for the new artist.

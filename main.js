@@ -60,8 +60,35 @@ class KpopQuiz {
         this.updateProgress();
         this.displayInstagramEmbed(this.currentArtist.instagram_url);
         this.generateChoices(this.currentArtist.birth_date);
+        this.updateDisqus(artist); // Add this line
     }
     
+    updateDisqus(artist) {
+        if (typeof DISQUS === 'undefined') {
+            return; // Disqus script hasn't loaded yet
+        }
+
+        // A unique identifier for the artist, e.g., 'blackpink-jennie'
+        const artistIdentifier = `${artist.group}-${artist.name.en}`.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+        
+        // The page's canonical URL
+        const pageUrl = `${window.location.origin}${window.location.pathname}#!${artistIdentifier}`;
+
+        window.disqus_config = function () {
+            this.page.url = pageUrl;
+            this.page.identifier = artistIdentifier;
+        };
+
+        // Reset Disqus to load the new thread
+        DISQUS.reset({
+            reload: true,
+            config: function () {
+                this.page.url = pageUrl;
+                this.page.identifier = artistIdentifier;
+            }
+        });
+    }
+
     updateProgress() {
         this.progressEl.textContent = this.currentArtistIndex + 1;
         this.scoreEl.textContent = this.score;
