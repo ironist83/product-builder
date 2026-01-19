@@ -10,6 +10,7 @@ class KpopQuiz {
         this.igContainer = document.getElementById('instagram-container');
         this.choicesContainer = document.getElementById('choices-container');
         this.loadingOverlayEl = document.getElementById('loading-overlay');
+        this.feedbackModalEl = document.getElementById('feedback-modal');
 
         this.init();
     }
@@ -41,6 +42,16 @@ class KpopQuiz {
 
     showError(message) {
         this.igContainer.innerHTML = `<p style="color: var(--incorrect-red);">${message}</p>`;
+    }
+
+    showFeedback(isCorrect) {
+        const modal = this.feedbackModalEl;
+        modal.textContent = isCorrect ? 'Correct!' : 'Wrong!';
+        modal.classList.add(isCorrect ? 'correct' : 'incorrect', 'show');
+
+        setTimeout(() => {
+            modal.classList.remove('show', 'correct', 'incorrect');
+        }, 1500);
     }
 
     async loadArtists() {
@@ -179,6 +190,9 @@ class KpopQuiz {
     }
 
     handleAnswer(selectedAge, correctAge) {
+        const isCorrect = selectedAge === correctAge;
+        this.showFeedback(isCorrect);
+
         this.choicesContainer.querySelectorAll('button').forEach(btn => {
             btn.disabled = true;
             if (parseInt(btn.textContent) === correctAge) {
@@ -188,7 +202,7 @@ class KpopQuiz {
             }
         });
         
-        if (selectedAge === correctAge) {
+        if (isCorrect) {
             this.score++;
         }
 

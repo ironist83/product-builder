@@ -76,11 +76,21 @@ header, main {
     text-align: center;
 }
 
-header h1 {
+.quiz-title {
     font-size: 2.5rem;
-    color: var(--neon-pink);
-    text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
     margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.title-main {
+    color: var(--neon-pink);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
+}
+
+.title-sub {
+    color: #FFFFFF;
+    font-size: 0.7em;
 }
 
 #quiz-info {
@@ -135,6 +145,13 @@ header h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+}
+
+.age-caption {
+    color: #aaaaaa;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 @keyframes neon-glow {
@@ -255,13 +272,47 @@ header h1 {
      box-shadow: 0 0 15px var(--glow-pink);
 }
 
+/* --- Feedback Modal --- */
+#feedback-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#feedback-modal.show {
+    opacity: 1;
+}
+
+#feedback-modal.correct {
+    background-color: var(--correct-green);
+    color: var(--background-dark);
+    box-shadow: 0 0 20px var(--glow-green);
+}
+
+#feedback-modal.incorrect {
+    background-color: var(--incorrect-red);
+    color: var(--text-primary);
+    box-shadow: 0 0 20px var(--glow-red);
+}
+
+
 /* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
     body {
         padding: 10px;
     }
 
-    header h1 {
+    .quiz-title {
         font-size: 2rem;
     }
 

@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="feedback-modal"></div>
     <div id="loading-overlay">
         <div class="spinner"></div>
         <p>Loading Quiz...</p>
     </div>
     <header>
-        <h1>K-Pop Age Master: Guess the Age</h1>
+        <div class="quiz-title">
+            <span class="title-main">K-Pop Age Master</span><br>
+            <span class="title-sub">Guess the Age</span>
+        </div>
         <div id="quiz-info">
             <div class="info-chip">Score: <span id="score">0</span></div>
             <div class="info-chip">Progress: <span id="progress">0</span> / <span id="total-questions">0</span></div>
@@ -26,6 +30,7 @@
         <div id="choices-container">
             <!-- Choice buttons will be generated here -->
         </div>
+        <p class="age-caption">Ages are calculated based on the year 2026.</p>
 
         <!-- Ad Slot 1 -->
         <div class="adsense-slot" style="margin-top: 20px;"></div>
