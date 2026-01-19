@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-    --background-start: #10001C;
-    --background-end: #000000;
+    --background-dark: #0a0a0c;
     --text-primary: #EAEAEA;
-    --neon-pink: #FF00E6;
-    --glow-pink: rgba(255, 0, 230, 0.7);
+    --neon-pink: #ff007a;
+    --neon-purple: #8A2BE2;
+    --glow-pink: rgba(255, 0, 122, 0.6);
     --correct-green: #00FF7F;
     --glow-green: rgba(0, 255, 127, 0.7);
     --incorrect-red: #FF3B3B;
@@ -23,7 +23,9 @@
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-primary);
-    background: linear-gradient(145deg, var(--background-start), var(--background-end));
+    background-color: var(--background-dark);
+    background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(138, 43, 226, 0.3), rgba(10, 10, 12, 0)),
+                      radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255, 0, 122, 0.3), rgba(10, 10, 12, 0));
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -54,14 +56,15 @@ header h1 {
 
 .info-chip {
     flex: 1;
-    background: rgba(255, 255, 255, 0.1); /* Slightly more prominent background */
-    padding: 14px; /* Increased padding */
-    border-radius: 25px; /* Slightly more rounded */
-    font-size: 1.3rem; /* Increased font size */
-    font-weight: 700; /* Bolder font weight */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 14px;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-align: center;
     color: var(--text-primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #quiz-container {
@@ -69,9 +72,12 @@ header h1 {
 }
 
 #instagram-container {
-    background: rgba(0,0,0,0.25); /* Slightly darker background */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* For Safari */
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    padding: 20px; /* Increased padding */
+    padding: 20px;
     min-height: 500px;
     display: flex;
     justify-content: center;
@@ -79,7 +85,7 @@ header h1 {
     margin: 0 auto 30px;
     overflow: hidden;
     max-width: 550px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Stronger box-shadow */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Make the Instagram embed responsive */
@@ -93,6 +99,12 @@ header h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+}
+
+@keyframes neon-glow {
+    0% { box-shadow: 0 0 5px var(--glow-pink), inset 0 0 5px var(--glow-pink); }
+    50% { box-shadow: 0 0 15px var(--glow-pink), 0 0 30px var(--glow-pink), inset 0 0 10px var(--glow-pink); }
+    100% { box-shadow: 0 0 5px var(--glow-pink), inset 0 0 5px var(--glow-pink); }
 }
 
 #choices-container button {
@@ -111,9 +123,33 @@ header h1 {
 
 #choices-container button:not(:disabled):hover {
     background-color: var(--neon-pink);
-    color: var(--background-start);
+    color: var(--background-dark);
     transform: translateY(-5px);
-    box-shadow: 0 0 15px var(--glow-pink), 0 0 30px var(--glow-pink), 0 0 45px var(--glow-pink), inset 0 0 10px var(--glow-pink);
+    animation: neon-glow 1.5s infinite alternate;
+}
+
+.adsense-slot {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.adsense-slot::before {
+    content: 'AD';
+}
+
+@media (min-width: 768px) {
+    .adsense-slot {
+        min-height: 250px;
+    }
 }
 
 /* --- Answer animations and styles --- */
@@ -132,7 +168,7 @@ header h1 {
 #choices-container button.correct {
     background-color: var(--correct-green);
     border-color: var(--correct-green);
-    color: var(--background-end);
+    color: var(--background-dark);
     box-shadow: 0 0 15px var(--glow-green);
     animation: correct-animation 0.5s ease-in-out;
 }
@@ -169,7 +205,7 @@ header h1 {
 
 .game-over button {
     font-size: 1.2rem;
-    color: var(--background-start);
+    color: var(--background-dark);
     background-color: var(--neon-pink);
     border: none;
     padding: 10px 20px;
