@@ -253,66 +253,91 @@ header, main {
 
 /* Game Over Screen */
 .game-over {
-    padding: 40px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 15px;
+    width: 100%;
+    padding: 40px 20px;
+    background: rgba(26, 26, 31, 0.8);
+    border-radius: 16px;
     text-align: center;
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 20px var(--glow-pink);
+    backdrop-filter: blur(10px);
 }
 
 .game-over h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--neon-pink);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.game-over p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.final-score-text {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+}
+
+#final-score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--correct-green);
+    text-shadow: 0 0 10px var(--glow-green);
 }
 
 .game-over-buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
-    flex-wrap: wrap;
+}
+
+.secondary-buttons {
+    display: flex;
+    gap: 15px;
 }
 
 .game-over button {
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--background-dark);
-    background-color: var(--neon-pink);
-    border: none;
+    color: var(--text-primary);
+    background-color: transparent;
+    border: 2px solid var(--neon-pink);
     padding: 12px 25px;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: box-shadow 0.3s, transform 0.2s;
+    transition: all 0.3s;
 }
 
-#share-btn {
-    background-color: #1DA1F2; /* Twitter Blue */
+#play-again-btn {
+    background-color: var(--neon-pink);
+    color: var(--background-dark);
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-#copy-link-btn {
-    background-color: var(--neon-purple);
+#share-btn, #copy-link-btn {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .game-over button:hover {
-     box-shadow: 0 0 20px var(--glow-pink);
      transform: translateY(-3px);
+     box-shadow: 0 0 15px var(--glow-pink);
+}
+
+.game-over button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 #share-btn:hover {
-    box-shadow: 0 0 20px rgba(29, 161, 242, 0.7);
+    background-color: #1DA1F2;
+    border-color: #1DA1F2;
+    box-shadow: 0 0 15px rgba(29, 161, 242, 0.7);
 }
 
 #copy-link-btn:hover {
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.7);
-}
-
-#play-again-btn:hover {
-    box-shadow: 0 0 20px var(--glow-pink);
+    background-color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.7);
 }
 
 /* --- Feedback Modal --- */

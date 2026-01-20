@@ -219,7 +219,7 @@ class KpopQuiz {
         this.igContainer.innerHTML = '';
         this.choicesContainer.innerHTML = `<div class="game-over">
             <h2>Game Over!</h2>
-            <p>Your final score is ${this.score} out of ${this.artists.length}.</p>
+            <p class="final-score-text">Your final score is <span id="final-score">${this.score}</span> out of <span id="total-questions-end">${this.artists.length}</span>.</p>
             <div class="game-over-buttons">
                 <button id="play-again-btn">Play Again</button>
                 <button id="share-btn">Share on X</button>
