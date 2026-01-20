@@ -254,28 +254,36 @@ header, main {
 /* Game Over Screen */
 .game-over {
     width: 100%;
-    padding: 40px 20px;
-    background: rgba(26, 26, 31, 0.8);
-    border-radius: 16px;
+    max-width: 500px; /* Match header/main max-width */
+    margin: 30px auto; /* Add margin to separate from other containers */
+    padding: 40px 30px; /* More generous padding */
+    background: rgba(255, 255, 255, 0.03); /* Match instagram-container background */
+    backdrop-filter: blur(15px); /* Match instagram-container backdrop-filter */
+    -webkit-backdrop-filter: blur(15px);
+    border: 0.5px solid rgba(255, 255, 255, 0.1); /* Match instagram-container border */
+    border-radius: 16px; /* Match instagram-container border-radius */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Match instagram-container shadow */
     text-align: center;
-    border: 1px solid var(--neon-pink);
-    box-shadow: 0 0 20px var(--glow-pink);
-    backdrop-filter: blur(10px);
 }
 
 .game-over h2 {
     font-size: 3rem;
     color: var(--neon-pink);
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Reduced margin for better flow */
+    line-height: 1.2;
 }
 
 .final-score-text {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Slightly smaller for better line breaks */
+    margin-top: 30px; /* Increased margin from title */
     margin-bottom: 40px;
+    line-height: 1.4;
+    word-break: keep-all; /* Prevent awkward word breaks */
+    white-space: normal;
 }
 
 #final-score {
-    font-size: 2.5rem;
+    font-size: 2.2rem; /* Adjusted for harmony with title */
     font-weight: 700;
     color: var(--correct-green);
     text-shadow: 0 0 10px var(--glow-green);
@@ -285,12 +293,16 @@ header, main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* Spacing between button groups */
 }
 
+/* Secondary buttons container for side-by-side layout */
 .secondary-buttons {
     display: flex;
-    gap: 15px;
+    gap: 15px; /* Spacing between share and copy buttons */
+    width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center;
 }
 
 .game-over button {
@@ -300,36 +312,48 @@ header, main {
     background-color: transparent;
     border: 2px solid var(--neon-pink);
     padding: 12px 25px;
-    border-radius: 8px;
+    border-radius: 8px; /* Consistent border-radius */
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease; /* Smoother transitions */
+    height: 50px; /* Consistent height for buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #play-again-btn {
     background-color: var(--neon-pink);
     color: var(--background-dark);
-    width: 100%;
-    margin-bottom: 10px;
+    border: none; /* Solid design */
+    width: 100%; /* Full width */
+    margin-bottom: 0; /* No extra margin here */
+    box-shadow: 0 0 15px var(--glow-pink); /* Stronger glow for main button */
 }
 
 #share-btn, #copy-link-btn {
-    flex: 1;
+    flex: 1; /* Equal width for side-by-side buttons */
+    max-width: calc(50% - 7.5px); /* Account for gap */
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
 }
 
 .game-over button:hover {
      transform: translateY(-3px);
-     box-shadow: 0 0 15px var(--glow-pink);
+     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Generic subtle glow on hover */
 }
 
 .game-over button:active {
     transform: translateY(0);
     box-shadow: none;
+    opacity: 0.8;
+}
+
+#play-again-btn:hover {
+    box-shadow: 0 0 25px var(--glow-pink); /* Emphasize hover for primary */
 }
 
 #share-btn:hover {
-    background-color: #1DA1F2;
+    background-color: #1DA1F2; /* Twitter Blue */
     border-color: #1DA1F2;
     box-shadow: 0 0 15px rgba(29, 161, 242, 0.7);
 }
@@ -338,6 +362,33 @@ header, main {
     background-color: var(--neon-purple);
     border-color: var(--neon-purple);
     box-shadow: 0 0 15px rgba(138, 43, 226, 0.7);
+}
+
+@media (max-width: 480px) { /* Adjust for very small screens */
+    .game-over {
+        padding: 30px 15px;
+    }
+
+    .game-over h2 {
+        font-size: 2.5rem;
+    }
+
+    .final-score-text {
+        font-size: 1.4rem;
+    }
+
+    #final-score {
+        font-size: 2rem;
+    }
+
+    .secondary-buttons {
+        flex-direction: column; /* Stack secondary buttons vertically */
+        gap: 10px;
+    }
+
+    #share-btn, #copy-link-btn {
+        max-width: 100%;
+    }
 }
 
 /* --- Feedback Modal --- */
