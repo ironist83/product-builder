@@ -62,6 +62,7 @@ header, main {
     width: 100%;
     max-width: 550px;
     text-align: center;
+    margin: 0 auto; /* Ensure centering for main elements */
 }
 
 #loading-overlay {
@@ -153,10 +154,12 @@ header, main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 30px;
+    margin: 0 auto 30px; /* Explicit margin for centering and spacing */
     overflow: hidden;
-    max-width: 550px;
+    width: 100%; /* Ensure it takes full available width */
+    max-width: 550px; /* Adhere to master width */
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 .placeholder-ig {
@@ -278,16 +281,17 @@ header, main {
 /* Game Over Screen */
 .game-over {
     width: 100%;
-    max-width: 550px;
-    margin: 30px auto;
-    padding: 40px; /* Increased horizontal padding */
+    max-width: 550px; /* Master width as per quiz-info container */
+    margin: 0 auto; /* Ensure perfect horizontal centering */
+    padding: 40px 60px; /* Increased horizontal padding for wider appearance */
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 0.5px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 16px; /* Unified border-radius with top cards */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Unified box-shadow with top cards */
     text-align: center;
+    box-sizing: border-box; /* Explicitly ensure correct width calculation */
 }
 
 .game-over h2 {
