@@ -1,93 +1,153 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.8;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --background-dark: #0a0a0c;
+    --text-primary: #EAEAEA;
+    --neon-pink: #ff007a;
+    --neon-purple: #8A2BE2;
+    --glow-pink: rgba(255, 0, 122, 0.6);
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
-    background-color: #ffffff;
-    color: #333333;
+    padding: 0;
 }
 
-.body-container {
-    max-width: 800px;
-    margin: 0 auto;
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--background-dark);
+    background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(138, 43, 226, 0.3), rgba(10, 10, 12, 0)),
+                      radial-gradient(ellipse 80% 50% at 50% 120%, rgba(255, 0, 122, 0.3), rgba(10, 10, 12, 0));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    overflow-x: hidden;
 }
 
-.navbar-container {
-    padding: 20px 0;
-    border-bottom: 1px solid #eeeeee;
-    margin-bottom: 40px;
+.top-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
-.navbar-brand {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333333;
+.top-nav a {
+    color: var(--text-primary);
     text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border: 1px solid var(--neon-pink);
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.main-container h1 {
-    font-size: 2.5em;
+.top-nav a:hover {
+    background-color: var(--neon-pink);
+    color: var(--background-dark);
+}
+
+header, main {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.blog-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+.title-main {
+    color: var(--neon-pink);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
+}
+
+.title-sub {
+    color: #FFFFFF;
+    font-size: 0.7em;
+}
+
+#blog-container {
+    text-align: left;
+}
+
+.generation-section {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
     margin-bottom: 30px;
-    line-height: 1.3;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-.main-container h2 {
-    font-size: 2em;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eeeeee;
-    padding-bottom: 10px;
+.generation-section summary {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--neon-pink);
+    padding: 25px;
+    cursor: pointer;
+    outline: none;
+    list-style: none; /* Remove default marker */
+    transition: background-color 0.3s;
 }
 
-.main-container p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
+.generation-section summary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.main-container ul {
-    margin-bottom: 20px;
+.generation-section summary::-webkit-details-marker {
+    display: none; /* Hide the default triangle in Chrome/Safari */
+}
+
+.generation-section summary::after {
+    content: '+';
+    float: right;
+    font-size: 2.5rem;
+    line-height: 1;
+    transition: transform 0.3s;
+}
+
+.generation-section[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.details-content {
+    padding: 0 25px 25px;
+    line-height: 1.8;
+}
+
+.details-content h3 {
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--neon-pink);
+    padding-bottom: 5px;
+}
+
+.details-content p, .details-content ul {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.details-content ul {
     padding-left: 20px;
 }
 
-.main-container li {
+.details-content li {
     margin-bottom: 10px;
-    font-size: 1.1em;
 }
 
-.back-link {
-    display: inline-block;
-    margin-top: 40px;
-    font-weight: bold;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.back-link:hover {
-    text-decoration: underline;
-}
-
-
-/* Blog list styles */
-.post-list {
-    margin-top: 40px;
-}
-
-.post-preview {
-    margin-bottom: 40px;
-}
-
-.post-preview h2 a {
-    font-size: 1.8em;
-    color: #333333;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.post-preview h2 a:hover {
-    color: #007bff;
-}
-
-.post-preview p {
-    font-size: 1.1em;
-    color: #666666;
+.details-content strong {
+    color: var(--neon-pink);
+    font-weight: 600;
 }
