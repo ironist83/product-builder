@@ -21,6 +21,7 @@
 }
 
 body {
+    position: relative;
     font-family: 'Poppins', sans-serif;
     color: var(--text-primary);
     background-color: var(--background-dark);
@@ -32,6 +33,29 @@ body {
     align-items: center;
     padding: 20px;
     overflow-x: hidden;
+}
+
+.top-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.top-nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border: 1px solid var(--neon-pink);
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.top-nav a:hover {
+    background-color: var(--neon-pink);
+    color: var(--background-dark);
 }
 
 header, main {

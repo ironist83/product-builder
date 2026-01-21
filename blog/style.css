@@ -1,75 +1,93 @@
 body {
-    font-family: sans-serif;
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.8;
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #ffffff;
+    color: #333333;
 }
 
-header {
-    text-align: center;
+.body-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar-container {
+    padding: 20px 0;
+    border-bottom: 1px solid #eeeeee;
     margin-bottom: 40px;
 }
 
-header h1 {
-    font-size: 2.5em;
-    color: #333;
-}
-
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.post-list .post-preview {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.post-list .post-preview:last-child {
-    border-bottom: none;
-}
-
-.post-preview h2 a {
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333333;
     text-decoration: none;
-    color: #333;
-    font-size: 1.8em;
 }
 
-.post-preview h2 a:hover {
-    color: #007BFF;
+.main-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    line-height: 1.3;
 }
 
-article h2 {
+.main-container h2 {
     font-size: 2em;
+    margin-top: 40px;
     margin-bottom: 20px;
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 10px;
 }
 
-article p {
-    margin-bottom: 15px;
+.main-container p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
 }
 
-article ul {
-    margin-bottom: 15px;
+.main-container ul {
+    margin-bottom: 20px;
     padding-left: 20px;
 }
 
-a {
-    color: #007BFF;
+.main-container li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: bold;
+    color: #007bff;
     text-decoration: none;
 }
 
-a:hover {
+.back-link:hover {
     text-decoration: underline;
 }
 
-footer {
-    text-align: center;
+
+/* Blog list styles */
+.post-list {
     margin-top: 40px;
+}
+
+.post-preview {
+    margin-bottom: 40px;
+}
+
+.post-preview h2 a {
+    font-size: 1.8em;
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-preview h2 a:hover {
+    color: #007bff;
+}
+
+.post-preview p {
+    font-size: 1.1em;
+    color: #666666;
 }
