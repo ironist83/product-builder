@@ -278,7 +278,7 @@ header, main {
 /* Game Over Screen */
 .game-over {
     width: 100%;
-    max-width: 500px; /* Match header/main max-width */
+    max-width: 550px; /* Match header/main max-width */
     margin: 30px auto; /* Add margin to separate from other containers */
     padding: 40px 30px; /* More generous padding */
     background: rgba(255, 255, 255, 0.03); /* Match instagram-container background */
