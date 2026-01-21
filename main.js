@@ -216,16 +216,22 @@ class KpopQuiz {
 
     endGame() {
         this.progressEl.textContent = this.artists.length;
-        this.igContainer.innerHTML = '';
-        this.choicesContainer.innerHTML = `<div class="game-over">
+        
+        // Use igContainer to leverage its wider layout
+        this.igContainer.innerHTML = `<div class="game-over">
             <h2>Game Over!</h2>
             <p class="final-score-text">Your final score is <span id="final-score">${this.score}</span> out of <span id="total-questions-end">${this.artists.length}</span>.</p>
             <div class="game-over-buttons">
                 <button id="play-again-btn">Play Again</button>
-                <button id="share-btn">Share on X</button>
-                <button id="copy-link-btn">Copy Link</button>
+                <div class="secondary-buttons">
+                    <button id="share-btn">Share on X</button>
+                    <button id="copy-link-btn">Copy Link</button>
+                </div>
             </div>
-            </div>`;
+        </div>`;
+        
+        // Clear choicesContainer as it's no longer used for game over display
+        this.choicesContainer.innerHTML = '';
         
         document.getElementById('play-again-btn').addEventListener('click', () => this.resetQuiz());
         document.getElementById('share-btn').addEventListener('click', () => this.shareScore());
