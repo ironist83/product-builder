@@ -283,7 +283,7 @@ header, main {
     width: 100%;
     max-width: 550px; /* Master width as per quiz-info container */
     margin: 0 auto; /* Ensure perfect horizontal centering */
-    padding: 40px 60px; /* Increased horizontal padding for wider appearance */
+    padding: 40px 20px; /* Adjusted horizontal padding to match #instagram-container */
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -396,7 +396,7 @@ header, main {
 
 @media (max-width: 480px) { /* Adjust for very small screens */
     .game-over {
-        padding: 30px 15px;
+        padding: 30px 20px; /* Adjusted to 20px for consistency */
     }
 
     .game-over h2 {
