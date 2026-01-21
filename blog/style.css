@@ -85,42 +85,18 @@ header, main {
     border: 0.5px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     margin-bottom: 30px;
+    padding: 25px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-.generation-section summary {
+.generation-section h2 {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--neon-pink);
-    padding: 25px;
-    cursor: pointer;
-    outline: none;
-    list-style: none; /* Remove default marker */
-    transition: background-color 0.3s;
-}
-
-.generation-section summary:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.generation-section summary::-webkit-details-marker {
-    display: none; /* Hide the default triangle in Chrome/Safari */
-}
-
-.generation-section summary::after {
-    content: '+';
-    float: right;
-    font-size: 2.5rem;
-    line-height: 1;
-    transition: transform 0.3s;
-}
-
-.generation-section[open] summary::after {
-    transform: rotate(45deg);
+    margin-bottom: 25px;
 }
 
 .details-content {
-    padding: 0 25px 25px;
     line-height: 1.8;
 }
 
