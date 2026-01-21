@@ -60,7 +60,7 @@ body {
 
 header, main {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     text-align: center;
 }
 
@@ -278,36 +278,36 @@ header, main {
 /* Game Over Screen */
 .game-over {
     width: 100%;
-    max-width: 550px; /* Match header/main max-width */
-    margin: 30px auto; /* Add margin to separate from other containers */
-    padding: 40px 30px; /* More generous padding */
-    background: rgba(255, 255, 255, 0.03); /* Match instagram-container background */
-    backdrop-filter: blur(15px); /* Match instagram-container backdrop-filter */
+    max-width: 550px;
+    margin: 30px auto;
+    padding: 40px; /* Increased horizontal padding */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 0.5px solid rgba(255, 255, 255, 0.1); /* Match instagram-container border */
-    border-radius: 16px; /* Match instagram-container border-radius */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); /* Match instagram-container shadow */
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
 .game-over h2 {
     font-size: 3rem;
     color: var(--neon-pink);
-    margin-bottom: 20px; /* Reduced margin for better flow */
+    margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .final-score-text {
-    font-size: 1.6rem; /* Slightly smaller for better line breaks */
-    margin-top: 30px; /* Increased margin from title */
+    font-size: 1.6rem;
+    margin-top: 30px;
     margin-bottom: 40px;
     line-height: 1.4;
-    word-break: keep-all; /* Prevent awkward word breaks */
+    word-break: keep-all;
     white-space: normal;
 }
 
 #final-score {
-    font-size: 2.2rem; /* Adjusted for harmony with title */
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--correct-green);
     text-shadow: 0 0 10px var(--glow-green);
@@ -315,7 +315,7 @@ header, main {
 
 .game-over-buttons {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack buttons vertically */
     align-items: center;
     gap: 15px; /* Spacing between button groups */
 }
@@ -323,9 +323,10 @@ header, main {
 /* Secondary buttons container for side-by-side layout */
 .secondary-buttons {
     display: flex;
+    flex-direction: row; /* Arrange side-by-side */
     gap: 15px; /* Spacing between share and copy buttons */
     width: 100%;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -336,10 +337,10 @@ header, main {
     background-color: transparent;
     border: 2px solid var(--neon-pink);
     padding: 12px 25px;
-    border-radius: 8px; /* Consistent border-radius */
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smoother transitions */
-    height: 50px; /* Consistent height for buttons */
+    transition: all 0.3s ease;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,10 +349,10 @@ header, main {
 #play-again-btn {
     background-color: var(--neon-pink);
     color: var(--background-dark);
-    border: none; /* Solid design */
+    border: none;
     width: 100%; /* Full width */
-    margin-bottom: 0; /* No extra margin here */
-    box-shadow: 0 0 15px var(--glow-pink); /* Stronger glow for main button */
+    margin-bottom: 0;
+    box-shadow: 0 0 15px var(--glow-pink);
 }
 
 #share-btn, #copy-link-btn {
@@ -359,6 +360,7 @@ header, main {
     max-width: calc(50% - 7.5px); /* Account for gap */
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
+    /* No change to box-shadow or border-radius, as they were already consistent */
 }
 
 .game-over button:hover {
